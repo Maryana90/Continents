@@ -1,3 +1,60 @@
+body{
+    font-family: 'Quicksand', sans-serif;
+}
+
+.container{
+    background-color:lightblue;
+}
+
 .accordion-button_img{
     margin-right: 8px;
+}
+
+.continents_block{
+    display: flex;
+    justify-content:space-between;
+    text-align: center;
+    height: 120px;
+    background-color:aliceblue;
+    margin: 15px 0 25px;
+}
+
+.render_continent{
+    display: inline-block;
+    margin-top: 25px;  
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.render_continent img{
+    border-radius: 5%;
+}
+
+.render_continent img:hover{
+    transform: scale(1.5); 
+    transition: 0.3s;
+    border-radius: 25%;
+    cursor: pointer;
+}
+
+.continent_title{
+    margin: 25px 0 10px;
+    font-family: 'New Tegomin', serif;
+    text-align: center;
+    font-size: 72px;
+    text-transform:uppercase;
+    color:navy;
+    font-weight: bold;
+}
+
+.continent_title img{
+    opacity: 0.9;
+    border-radius: 5%;
+    border: 2px solid white;
+}
+
+.continent_title img:hover{
+    transform: scale(1.25); 
+    transition: 0.3s;
+    cursor: pointer;
 }
