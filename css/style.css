@@ -53,8 +53,8 @@ body{
     border: 2px solid white;
 }
 
-.continent_title img:hover{
+/* .continent_title img:hover{
     transform: scale(1.25); 
     transition: 0.3s;
     cursor: pointer;
-}
+} */

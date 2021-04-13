@@ -38,23 +38,22 @@ const wrapper = document.querySelector('#wrapper');
 
 const continentClass = {
 	Continents: data=> new Continents(data),
+	Europe: data=> new Europe(data),
 }
+
 
 class ContinentsInfo {
 	static createContinents(arr) {
-
 		let continents = arr.map(continent => continentClass[continent.name.replace(" ","")] ? continentClass[continent.name.replace(" ","")](continent) : new Continent(continent))
-			console.log(continents);
-
+			
 		let continentsAccordion = continents
 			.map((continent,index) => continent.renderContinent(index))
 			.join('');
-
-			continents.map(continent=>continent.clickContinent());
-
+			continents.map(continent=>continent.continentView());
 			accordionContinents.innerHTML = continentsAccordion;
 	}
 }
+
 
 class Continent {
 	constructor(continent) {
@@ -68,7 +67,6 @@ class Continent {
 	}
 
 	renderContinent(index) {
-		//console.log(this);
 		return `<div class="accordion-item">
 			<h2 class="accordion-header" id="heading${this.name.replace(" ","")}">
 			  <button class="accordion-button ${index !=0 ? 'collapsed' : ''}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${this.name.replace(" ","")}" aria-expanded="${index !=0 ? 'false' : 'true'}" aria-controls="collapse${this.name.replace(" ","")}">
@@ -84,24 +82,19 @@ class Continent {
 		  </div>`
 	}
 
-	clickContinent(){
+	continentView(){
 		let blockContinent = document.createElement('div');
 		blockContinent.classList.add('render_continent');
-		//console.log(this);
 		let continent = document.createElement('img');
 		continent.id = `render_${this.name.replace(" ","")}`;
 		continent.src=`./images/${this.name.replace(' ','')}.jpg`;
 		continent.alt = this.name;
 		continent.width = 120;
 		continent.title = this.name;
-		
-		console.log(continent.id);
 
 		continent.addEventListener('click',this.buttonClick.bind(this));
 		blockContinent.append(continent);
-
 		continents_block.append(blockContinent);
-		
 	}
 
 	buttonClick(){
@@ -116,16 +109,29 @@ class Continents extends Continent{
 		super(continent);
 	}
 
-	clickContinent(){
+	continentView(){
 		let continentTitle = document.createElement('h1');
 		continentTitle.classList.add('continent_title');
 		continentTitle.title = this.name;
 		continentTitle.innerHTML = `${this.name} <img src="./images/${this.name.replace(" ","")}.jpg" alt=${this.name} width="170">`
-
 		wrapper.prepend(continentTitle);
 	}
 }
 
-ContinentsInfo.createContinents(ContinentsData);
 
+class Europe extends Continent{
+	constructor(continent){
+		super(continent);
+	}
+	buttonClick(){
+		super.buttonClick();
+		this.europeMethod();
+	}
+	europeMethod(){
+		window.open('./europe.html')
+	}
+}
+
+
+ContinentsInfo.createContinents(ContinentsData);
 
